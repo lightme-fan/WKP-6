@@ -1,0 +1,115 @@
+/* Default */
+body {
+    font-family: sans-serif;
+}
+
+/* Article */
+article {
+    max-width: 762px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* h1 nad h2 */
+h1, h2 {
+    text-align: center;
+}
+
+/* Container */
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.total {
+    text-align: end;
+}
+
+/* The List of food and the order */
+
+.food-list, .orders {
+    background-color: thistle;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 5px 5px black;
+}
+
+/* This footer contains the confirm button */
+.footer {
+    margin-top: 1rem;
+    text-align: end;
+}
+
+.confirm-btn {
+    padding: 1rem;
+    background-color: blue;
+    border-radius: 10px;
+    color: white;
+    font-weight: 700;
+}
+
+/* Default list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+/* This is for the category (Spicy and Vegetarian) */
+.filter, .category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.spicy {
+    margin-right: 1rem;
+}
+
+/* Food Choices */
+.food {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+/* Removing some element */
+.remove {
+    display: none;
+}
+/* Modal after the user click the confirm button */
+.outer-modal {
+    display: grid;
+    background: hsla(0, 0%, 0%, 0.7);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.outer-modal.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.inner-modal {
+    max-width: 600px;
+    min-width: 400px;
+    padding: 2rem;
+    border-radius: 5px;
+    min-height: 200px;
+    background: white;
+    transform: translateY(-200%);
+    transition: transform 0.2s;
+}
+
+.outer-modal.open .inner-modal {
+    transform: translateY(0);
+}

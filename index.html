@@ -7,6 +7,43 @@
 		<title>WKP6</title>
 	</head>
 	<body>
+		<article>
+			<header>
+				<h1>Hungry Student Restaurant</h1>
+			</header>
+			<div class="container">
+				<div class="food-list">
+          <h2>Food List</h2> 
+          <div class="filter">
+            <p>Filter by: </p>
+            <ul class="category">
+              <li class="spicy">
+                <input type="checkbox" name="spicy" id="spicy">
+                <span>Spicy</span>
+              </li>
+              <li>
+                <input type="checkbox" name="vegetarian" id="vegetarian">
+                <span>Vegetarian</span>
+              </li>
+            </ul>
+          </div> 
+          <ul class="food-ls">
+          </ul>
+
+				</div>
+				<div class="orders">
+          <h2>Your order</h2>
+          <ul class="order"></ul>
+          <p class="total">Total: </p>
+				</div>
+      </div>
+      <div class="footer">
+        <button type="button" class="confirm-btn">Cofirm Order</button>
+      </div>
+      <div class="outer-modal">
+        <div class="inner-modal"></div>
+      </div>
+		</article>
 		<script src="script.js"></script>
 	</body>
 </html>
