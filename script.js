@@ -140,13 +140,13 @@ const orders = [];
 window.addEventListener('click', (e) => {
     if (e.target.matches('button.addToOrder')) {   
         // A new object
-            const anOrder = {}
-            anOrder.id = foods['id'],
-            anOrder.title = foods['id'],
-            anOrder.price = foods['price']
-            orders.push(anOrder);
-            console.log(anOrder);
-            console.log(`${orders.length}`);
+        const anOrder = {}
+        anOrder.id = foods['id'],
+        anOrder.title = foods['id'],
+        anOrder.price = foods['price']
+        orders.push(anOrder);
+        
+        // Adding the html to the oreder list
         const orderHtml = orders.map(order =>
             `
              <li>
