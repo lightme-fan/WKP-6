@@ -78,6 +78,7 @@ ul {
 .remove {
     display: none;
 }
+
 /* Modal after the user click the confirm button */
 .outer-modal {
     display: grid;
@@ -100,8 +101,7 @@ ul {
 }
 
 .inner-modal {
-    max-width: 600px;
-    min-width: 400px;
+    max-width: 450px;
     padding: 2rem;
     border-radius: 5px;
     min-height: 200px;

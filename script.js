@@ -39,7 +39,7 @@ const foods = [
 const oderListFood = document.querySelector('.food-ls');
 const spicyCheckbox = document.querySelector('#spicy');
 const vegetarianCheckbox = document.querySelector('#vegetarian');
-const allCheckboxes = document.querySelectorAll('[type="checkbox"]');
+const allCheckboxes = document.querySelectorAll('.input-category');
 const confirmBtn = document.querySelector('.confirm-btn');
 const innerModal = document.querySelector('.inner-modal');
 const outerModal = document.querySelector('.outer-modal');
@@ -65,8 +65,10 @@ const orderFood = foods.map(food => {
     oderListFood.insertAdjacentHTML("beforeend", html);
 });
 
-// Spicy vegetarian
-spicyCheckbox.addEventListener('change', () => {
+
+// Handling the spicy and vegetarian 
+allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
+    // If the spicy checkbox is checked, show the spicy food
     if (spicyCheckbox.checked === true) {
         const spicyFood = foods
             .filter(food => food.spicy === true)
@@ -81,10 +83,8 @@ spicyCheckbox.addEventListener('change', () => {
                 </li>`).join('');
         oderListFood.innerHTML = spicyFood;
     }
-});
 
-// Vegetarian Checkbox
-vegetarianCheckbox.addEventListener('change', () => {
+    // If the vegetarian checkbox is checked, show the vegetarian food
     if (vegetarianCheckbox.checked === true) {
         const vegetarianFood = foods
             .filter(food => food.vegetarian)
@@ -100,45 +100,69 @@ vegetarianCheckbox.addEventListener('change', () => {
         oderListFood.innerHTML = vegetarianFood;
     }
 
-});
-
-oderListFood.addEventListener('change', (e) => {
-    if (e.target.matches('input.[type="checkbox"]')) {
-        if (spicy.checked ===true && vegetarian.checked === true) {
-            const allCategories = foods.filter(food => food.spicy === true && food.vetarian === true);
-            const foodHtml = allCategories.map(foodCategorie => `
-            <li>
-                <div class="food" id="${foodCategorie.id}">
-                <div>${foodCategorie.title}</div>
-                <span class="price">${foodCategorie.price} Ar</span>
-                <button class="addToOrder">Add</button>
-                </div>
-            </li>
-        `).join('');
-        oderListFood.innerHTML = foodHtml;
-        }
+    // // If the all checkboxes are checked, show the spicy and vegetarian food
+    if (spicyCheckbox.checked ===true && vegetarianCheckbox.checked ===true) {
+        const allCategories = foods
+            .filter(food => food.spicy && food.vegetarian)
+            .map(foodCategory => `
+                <li>
+                    <div class="food" id="${foodCategory.id}">
+                        <div>${foodCategory.title}</div>
+                        <span class="price">${foodCategory.price} Ar</span>
+                        <button class="addToOrder">Add</button>
+                    </div>
+                </li>
+            `).join('');
+         oderListFood.innerHTML = allCategories;
+    } 
+    
+    // Showing the list if none of the checkboxes is checked
+    if (spicyCheckbox.checked ===false && vegetarianCheckbox.checked ===false) {
+        const orderFood = foods.map(food =>
+            `   
+                <li class="food-item">
+                    <div class="food" id="${food.id}">
+                        <div>${food.title}</div>
+                        <span class="price">${food.price} Ar</span>
+                        <button class="addToOrder">Add</button>
+                    </div>
+                </li>
+            `).join('');
+            oderListFood.innerHTML = orderFood;
     }
-});
+    
+}));
 
-// Handling
+// Creating a new array object
+const orders = [];
+
+// Handling the add button
 window.addEventListener('click', (e) => {
-    if (e.target.matches('button.addToOrder')) {
-        const listOrder = e.target.closest('food-ls')
-        console.log(listOrder)
-
-        const html =
-        `
-        <li>
-            <div class="food" id="${spicy.id}">
-                <span>${spicy.title}</span>
-                <span>x1</span>
-                <span>${spicy.price}</span>
-            </div>
-        </li>
-        `;
-        order.insertAdjacentHTML('beforeend', html);
+    if (e.target.matches('button.addToOrder')) {   
+        // A new object
+            const anOrder = {}
+            anOrder.id = foods['id'],
+            anOrder.title = foods['id'],
+            anOrder.price = foods['price']
+            orders.push(anOrder);
+            console.log(anOrder);
+            console.log(`${orders.length}`);
+        const orderHtml = orders.map(order =>
+            `
+             <li>
+                 <div class="food" id="${order.id}">
+                     <span>${order.title}</span>
+                     <span>x1</span>
+                     <span>${order.price}</span>
+                 </div>
+             </li>
+             `).join('');
+        order.innerHTML = orderHtml;
     }
-})
+
+    order.dispatchEvent(new CustomEvent('orderUpdated'));
+});
+
 
 // Showing the modal 
 confirmBtn.addEventListener('click', () => {
