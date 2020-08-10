@@ -142,13 +142,15 @@ const orders = [];
 // Handling the add button
 window.addEventListener('click', (e) => {
     if (e.target.matches('button.addToOrder')) {   
-        // 
         const orderFood = e.target.closest('.food-item');
+
+        // Creating a new object for the order
         const anOrder = {}
         anOrder.id = orderFood.querySelector('.food').textContent,
         anOrder.title = orderFood.querySelector('.title').textContent,
         anOrder.price = orderFood.querySelector('.price').textContent
         
+        // Pushing the objects into the orders array
         orders.push(anOrder);
 
         const orderHtml = `   
@@ -164,7 +166,11 @@ window.addEventListener('click', (e) => {
     }
 
     // Counting the total
-    
+    const countOrder = orders.reduce((order, prices) => {
+        return order + prices.price; 
+    });
+    console.log(countOrder);
+
 });
 
 
