@@ -9,9 +9,8 @@
 
 4. I updated the vegetarian checkbox. When it is checked, all the vegetarian food appear.
 
-5. 
+5. When all the checkboxes are checked, all the spicy and vegetarian food appear.
 
-2. If you had more time, what area of your work would you improve?
-3. Did you learn anything new while working on this project?
-4. What was the most challenging part for you?
-5. Would you like a new explanation about a specific topic?
+6. I also hve updated the add buttons, when they are clicked the order food appears.
+
+If I have more I could finish all the exercise.
