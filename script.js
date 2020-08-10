@@ -36,6 +36,7 @@ const foods = [
     },
 ];
 
+// Grabing all element which are needed
 const oderListFood = document.querySelector('.food-ls');
 const spicyCheckbox = document.querySelector('#spicy');
 const vegetarianCheckbox = document.querySelector('#vegetarian');
@@ -46,13 +47,7 @@ const outerModal = document.querySelector('.outer-modal');
 const order = document.querySelector('.order');
 const total = document.querySelector('.total');
 
-/*
-To generate any list of element (for example, the list of food), Map is really useful.
-To get the full price of list of items, Reduce is the perfect use case.
-To count how many times an item is in a list, you could Filter the list and see the length of the result, or use a Reduce to count all of the instances.
-*/
 // Showing the list of food in the card
-
 const orderFood = foods.map(food => {
     const html = `   
         <li class="food-item">
