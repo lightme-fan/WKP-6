@@ -161,10 +161,7 @@ window.addEventListener('click', (e) => {
     }
 
     // Counting the total
-    const countOrder = orders.reduce((order, prices) => {
-        return order + prices.price; 
-    });
-    console.log(countOrder);
+
 
 });
 
