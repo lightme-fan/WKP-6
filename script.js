@@ -44,6 +44,7 @@ const confirmBtn = document.querySelector('.confirm-btn');
 const innerModal = document.querySelector('.inner-modal');
 const outerModal = document.querySelector('.outer-modal');
 const order = document.querySelector('.order');
+const total = document.querySelector('.total');
 
 /*
 To generate any list of element (for example, the list of food), Map is really useful.
@@ -56,7 +57,7 @@ const orderFood = foods.map(food => {
     const html = `   
         <li class="food-item">
             <div class="food" id="${food.id}">
-                <div>${food.title}</div>
+                <div class="title">${food.title}</div>
                 <span class="price">${food.price} Ar</span>
                 <button class="addToOrder">Add</button>
             </div>
@@ -65,11 +66,9 @@ const orderFood = foods.map(food => {
     oderListFood.insertAdjacentHTML("beforeend", html);
 });
 
-
-// Handling the spicy and vegetarian 
-allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
-    // If the spicy checkbox is checked, show the spicy food
-    if (spicyCheckbox.checked === true) {
+// If the spicy checkbox is checked, show the spicy food
+spicyCheckbox.addEventListener('change', () => {
+    if (spicyCheckbox.checked) {
         const spicyFood = foods
             .filter(food => food.spicy === true)
             .map(spicy => 
@@ -82,10 +81,12 @@ allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
                     </div>
                 </li>`).join('');
         oderListFood.innerHTML = spicyFood;
-    }
+    }    
+});
 
-    // If the vegetarian checkbox is checked, show the vegetarian food
-    if (vegetarianCheckbox.checked === true) {
+// If the vegetarian checkbox is checked, show the vegetarian food
+vegetarianCheckbox.addEventListener('change', ()=> {
+    if (vegetarianCheckbox.checked) {
         const vegetarianFood = foods
             .filter(food => food.vegetarian)
             .map(vegetarian => `   
@@ -99,7 +100,9 @@ allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
                 `).join('');
         oderListFood.innerHTML = vegetarianFood;
     }
-
+})
+// Handling the spicy and vegetarian 
+allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
     // // If the all checkboxes are checked, show the spicy and vegetarian food
     if (spicyCheckbox.checked ===true && vegetarianCheckbox.checked ===true) {
         const allCategories = foods
@@ -113,7 +116,7 @@ allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
                     </div>
                 </li>
             `).join('');
-         oderListFood.innerHTML = allCategories;
+        oderListFood.innerHTML = allCategories;
     } 
     
     // Showing the list if none of the checkboxes is checked
@@ -128,7 +131,7 @@ allCheckboxes.forEach(checkbox => checkbox.addEventListener('change', () => {
                     </div>
                 </li>
             `).join('');
-            oderListFood.innerHTML = orderFood;
+        oderListFood.innerHTML = orderFood;
     }
     
 }));
@@ -139,28 +142,29 @@ const orders = [];
 // Handling the add button
 window.addEventListener('click', (e) => {
     if (e.target.matches('button.addToOrder')) {   
-        // A new object
+        // 
+        const orderFood = e.target.closest('.food-item');
         const anOrder = {}
-        anOrder.id = foods['id'],
-        anOrder.title = foods['id'],
-        anOrder.price = foods['price']
-        orders.push(anOrder);
+        anOrder.id = orderFood.querySelector('.food').textContent,
+        anOrder.title = orderFood.querySelector('.title').textContent,
+        anOrder.price = orderFood.querySelector('.price').textContent
         
-        // Adding the html to the oreder list
-        const orderHtml = orders.map(order =>
-            `
-             <li>
-                 <div class="food" id="${order.id}">
-                     <span>${order.title}</span>
-                     <span>x1</span>
-                     <span>${order.price}</span>
-                 </div>
-             </li>
-             `).join('');
-        order.innerHTML = orderHtml;
+        orders.push(anOrder);
+
+        const orderHtml = `   
+            <li class="food-item">
+                <div class="food" id="${anOrder.id}">
+                    <div>${anOrder.title}</div>
+                    <span>x1</span>
+                    <span class="price">${anOrder.price}</span>
+                </div>
+            </li>
+        `;
+        order.insertAdjacentHTML('beforeend', orderHtml);
     }
 
-    order.dispatchEvent(new CustomEvent('orderUpdated'));
+    // Counting the total
+    
 });
 
 
