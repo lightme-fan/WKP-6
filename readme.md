@@ -14,3 +14,5 @@
 6. I also hve updated the add buttons, when they are clicked the order food appears.
 
 If I have more I could finish all the exercise.
+
+## I could not answer to all the questions because I still cleaned my codes. Thanks!
